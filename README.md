@@ -16,8 +16,6 @@ Or install it yourself as:
 
     $ gem install typus_markitup
 
-## Configuration
-
 ## Usage
 
 ### In your model:
