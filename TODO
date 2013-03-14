@@ -1,0 +1,12 @@
+ - Add custom commands for all items in style guide
+
+ ✓ Make the editor work with translated fields (typus_translate) @done (13-03-08 12:15)
+ ✓ Typus::Markitup helper (setup method) @done (13-03-08 13:09)
+ ✓ Partial for modal @done (13-03-08 13:09)
+ ✓ Class method for typus_markitup @done (13-03-08 13:01)
+
+- Readme
+
+ - Add Backbone
+
+ - Allow passing in different buttons and options (zB classes) from projects (configuration yaml?)

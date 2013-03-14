@@ -1,0 +1,25 @@
+<%=
+  unless @typus_markitup_assets_loaded # only load assets once
+    @typus_markitup_assets_loaded = true
+
+    content_for :javascripts do
+      javascript_include_tag 'typus_markitup/application'
+    end
+    content_for :stylesheets do
+      stylesheet_link_tag 'typus_markitup/application'
+    end
+    render "admin/templates/markitup/modal"
+  end
+%>
+<%
+  unless without_field ||= false
+    custom = { :rows => @resource.typus_options_for(:form_rows), :class => "markitup" }
+    options ||= {}
+    options.merge!(custom)
+%>
+  <li id="<%= attribute_id %>">
+    <%= form.label attribute, label_text %>
+    <%= form.text_area attribute, options %>
+  </li>
+
+<% end %>

@@ -1,0 +1,13 @@
+.btn {
+  text-decoration: none;
+  &.btn-primary {
+    border: 0;
+    background: #37a500;
+    color: #fff;
+    padding: 8px 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-shadow: none;
+  }
+}
