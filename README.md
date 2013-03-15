@@ -20,9 +20,9 @@ Or install it yourself as:
 
 ### In your model:
 
-  class Post < ActiveRecord::Base
-    typus_markitup :body
-    ...
+    class Post < ActiveRecord::Base
+      typus_markitup :body
+      ...
 
 ## Copyright
 
