@@ -30,7 +30,7 @@ mySettings = {
 		{name:'Bulleted list', openWith:'(!(* |!|*)!)'},
 		{name:'Numeric list', openWith:'(!(# |!|#)!)'},
 		{separator:'---------------' },
-		{name:'Picture', replaceWith: function(markItUp) {
+		{name:'img', className: 'img', replaceWith: function(markItUp) {
 			MarkupHelper.showDialog(markItUp);
 			return false;
 		}},

@@ -3,4 +3,7 @@
   width: 100%;
   border: 1px solid;
   border-color: #848484 #c1c1c1 #e1e1e1;
+  &:active, &:focus {
+    box-shadow: none;
+  }
 }
