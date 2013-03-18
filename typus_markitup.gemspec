@@ -4,11 +4,11 @@ require "markitup/version"
 
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["TODO: Write your name"]
-  gem.email         = ["TODO: Write your email address"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.authors       = ["Karl Horky"]
+  gem.email         = ["team@wollzelle.com"]
+  gem.description   = %q{Typus markItUp! module}
+  gem.summary       = %q{A Typus module to add a markup editor to any textarea}
+  gem.homepage      = "http://wollzelle.com"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
