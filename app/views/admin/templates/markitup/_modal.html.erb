@@ -1,55 +1,55 @@
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Insert an Image</h3>
+    <h3 id="modal-label">Insert an Image</h3>
   </div>
   <div class="modal-body">
     <label for="src">Image Path</label>
-    <input class="text" name="src" id="src" size="30" type="text" placeholder="http://example.wollzelle.com/image.jpg">
+    <input class="text" name="src" id="src" size="30" type="text" placeholder="http://example.wollzelle.com/image.jpg" data-replaces="\\3">
     <label for="caption">Caption</label>
     <input class="text" name="caption" id="caption" size="30" type="text" placeholder="Caption to appear below the image">
     <label for="alt">Alternate Text for Image (optional)</label>
-    <input class="text" name="alt" id="alt" size="30" type="text" placeholder="Defaults to Caption with HTML stripped">
+    <input class="text" name="alt" id="alt" size="30" type="text" placeholder="Defaults to Caption with links stripped">
     <label for="link">Image Link (optional)</label>
     <input class="text" name="link" id="link" size="30" type="text" placeholder="http://www.wollzelle.com/">
     <fieldset>
-      <input id="class_showcase" name="class_showcase" type="checkbox" checked>
+      <input type="checkbox" id="class_showcase" name="class_showcase" value="showcase" checked data-checked-default="checked">
       <label class="inline_label" for="class_showcase">Wide (for Work pages)</label>
-      <input id="class_shadow" name="class_shadow" type="checkbox">
+      <input type="checkbox" id="class_shadow" name="class_shadow" value="shadow">
       <label class="inline_label" for="class_shadow">Shadow</label>
     </fieldset>
     <fieldset>
-      <input id="class_border_none" name="class_border" type="radio" checked>
+      <input type="radio" id="class_border_none" name="class_border" value="" checked data-checked-default="checked">
       <label class="inline_label" for="class_border_none">No Border</label>
-      <input id="class_border" name="class_border" type="radio">
+      <input type="radio" id="class_border" name="class_border" value="border">
       <label class="inline_label" for="class_border">Border</label>
-      <input id="class_offset_border" name="class_border" type="radio">
+      <input type="radio" id="class_offset_border" name="class_border" value="offset-border">
       <label class="inline_label" for="class_offset_border">Thick White Border</label>
     </fieldset>
     <fieldset>
-      <input id="class_angle_none" name="class_rounded" type="radio" checked>
-      <label class="inline_label" for="class_angle_none">Square</label>
-      <input id="class_rounded" name="class_rounded" type="radio">
+      <input type="radio" id="class_rounded_none" name="class_rounded" value="" checked data-checked-default="checked">
+      <label class="inline_label" for="class_rounded_none">Square</label>
+      <input type="radio" id="class_rounded" name="class_rounded" value="rounded">
       <label class="inline_label" for="class_rounded">Rounded</label>
-      <input id="class_rounded_top" name="class_rounded" type="radio">
+      <input type="radio" id="class_rounded_top" name="class_rounded" value="rounded-top">
       <label class="inline_label" for="class_rounded_top">Rounded Top</label>
     </fieldset>
     <fieldset>
-      <input id="class_angle_none" name="class_angle" type="radio" checked>
+      <input type="radio" id="class_angle_none" name="class_angle" value="" checked data-checked-default="checked">
       <label class="inline_label" for="class_angle_none">Straight</label>
-      <input id="class_angle_left" name="class_angle" type="radio">
+      <input type="radio" id="class_angle_left" name="class_angle" value="angle-left">
       <label class="inline_label" for="class_angle_left">Angled Left</label>
-      <input id="class_angle_right" name="class_angle" type="radio">
+      <input type="radio" id="class_angle_right" name="class_angle" value="angle-right">
       <label class="inline_label" for="class_angle_right">Angled Right</label>
     </fieldset>
     <fieldset>
-      <input id="class_inline_none" name="class_inline" type="radio" value="" checked>
+      <input type="radio" id="class_inline_none" name="class_inline" value="" checked data-checked-default="checked">
       <label class="inline_label" for="class_inline_none">Full Width</label>
-      <input id="class_inline_no_scale" name="class_inline" type="radio" value="no-scale">
+      <input type="radio" id="class_inline_no_scale" name="class_inline" value="no-scale">
       <label class="inline_label" for="class_inline_no_scale">Don't Scale Up</label>
-      <input id="class_inline_left" name="class_inline" type="radio" value="inline-left">
+      <input type="radio" id="class_inline_left" name="class_inline" value="inline left">
       <label class="inline_label" for="class_inline_left">Inline Left</label>
-      <input id="class_inline_right" name="class_inline" type="radio" value="inline-right">
+      <input type="radio" id="class_inline_right" name="class_inline" value="inline right">
       <label class="inline_label" for="class_inline_right">Inline Right</label>
     </fieldset>
     <div class="preview"><img></div>

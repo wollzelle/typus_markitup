@@ -17,15 +17,9 @@ mySettings = {
 	markupSet: [
 		{name:'Heading 1', key:'1', openWith:'h1(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
 		{name:'Heading 2', key:'2', openWith:'h2(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-		{name:'Heading 3', key:'3', openWith:'h3(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-		{name:'Heading 4', key:'4', openWith:'h4(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-		{name:'Heading 5', key:'5', openWith:'h5(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-		{name:'Heading 6', key:'6', openWith:'h6(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-		{name:'Paragraph', key:'P', openWith:'p(!(([![Class]!]))!). '},
 		{separator:'---------------' },
 		{name:'Bold', key:'B', closeWith:'*', openWith:'*'},
 		{name:'Italic', key:'I', closeWith:'_', openWith:'_'},
-		{name:'Stroke through', key:'S', closeWith:'-', openWith:'-'},
 		{separator:'---------------' },
 		{name:'Bulleted list', openWith:'(!(* |!|*)!)'},
 		{name:'Numeric list', openWith:'(!(# |!|#)!)'},
@@ -35,30 +29,65 @@ mySettings = {
 			return false;
 		}},
 		{name:'Link', openWith:'"', closeWith:'([![Title]!])":[![Link:!:http://]!]', placeHolder:'Your text to link here...' },
-		{separator:'---------------' },
-		{name:'Quotes', openWith:'bq(!(([![Class]!]))!). '},
-		{name:'Code', openWith:'@', closeWith:'@'},
-		{separator:'---------------' },
-		{name:'Preview', call:'preview', className:'preview'}
+    {separator:'---------------' },
+    {name:'Quotes', openWith:'bq(!(([![Class]!]))!). '},
+    {name:'Code', openWith:'@', closeWith:'@'}
 	]
-}
+};
 
 var MarkupHelper = {
     eventsAttached: false,
 
     showDialog: function (markItUp) {
         this.bindEvents(markItUp);
-        $('#myModal').modal('show');
-        $('[name="src"]').val('');
-        $('[name="caption"]').val('');
+        var modal   = $('#myModal'),
+            src     = modal.find('[name="src"]').val(''),
+            caption = modal.find('[name="caption"]').val(''),
+            alt     = modal.find('[name="alt"]').val(''),
+            link    = modal.find('[name="link"]').val(''),
+            classes = modal.find('[name*="class_"]'),
+            preview = modal.find('.preview img');
+
+        modal.modal('show');
 
 				string = $(markItUp.textarea).val();
-				for (start = markItUp.caretPosition; start >= 0 && string[start-1] != " "; --start);
-				for (end = markItUp.caretPosition; end < string.length && string[end] != " "; ++end);
-				if (string.substring(start, end).match(/^http:.+\.(jpg|png)$/))
-          $('.preview img').attr('src', string.substring(start, end));
-        else
-          $('.preview img').removeAttr('src');
+				for (start = markItUp.caretPosition; start >= 0 && string[start-1] != "\n"; --start);
+				for (end = markItUp.caretPosition; end < string.length && string[end] != "\n"; ++end);
+        line = string.substring(start, end);
+
+        // TODO: don't do this twice if you can avoid it (it's also in listener.js)
+        markItUp.textarea.setSelectionRange(start, end);
+
+        match = line.match(/^(inline)?img\(([^\)]*)\)\. (https?:\/\/[\w\/\.\-\@]+)(?::(https?:\/\/[\S]+))?\s?(?:\((.*)\))?(.*)/);
+        if (match) {
+          matches = {};
+          matches['inline'] = match[1];
+          matches['classes'] = match[2];
+          matches['image'] = match[3];
+          matches['link'] = match[4];
+          matches['alt'] = match[5];
+          matches['caption'] = match[6];
+          preview.attr('src', matches['image']);
+          src.val(matches['image']);
+          caption.val(matches['caption']);
+          alt.val(matches['alt']);
+          link.val(matches['link']);
+          if (matches['inline']) {
+            matches['classes'] = matches['classes'].replace(/(left|right)/, "inline $1");
+          }
+          classes.each(function() {
+            if (matches['classes'].match($(this).val())) {
+              $(this).attr('checked', 'checked');
+            } else {
+              if (!$(this).data("checked-default")) {
+                $(this).removeAttr('checked');
+              }
+            }
+          });
+        } else {
+          preview.removeAttr('src');
+        }
+
     },
 
     bindEvents: function (markItUp) {
@@ -73,8 +102,22 @@ var MarkupHelper = {
             var src = $('[name="src"]').val();
             var link = ($('[name="link"]').val()) ? ":" + $('[name="link"]').val() : "";
             var caption = $('[name="caption"]').val();
-            var alt = $('[name="alt"]').val() || $('<div>', { html: caption }).text();
-            var linkElement = 'img. ' + src + link + ' (' + alt + ') ' + caption;
+            var alt = $('[name="alt"]').val() || caption.replace(/"([^"]+)":\S+/g, "$1");
+            var classes = '';
+            if (caption !== "") {
+              caption = " " + caption
+            }
+            if (alt !== "") {
+              alt = " (" + alt + ")";
+            }
+            $('#myModal [name*="class_"]').each(function(){
+              if ($(this).is(":checked") && $(this).val() !== '') {
+                classes += $(this).val() + " ";
+              }
+            });
+            classes = classes.trim();
+
+            var linkElement = 'img(' + classes + '). ' + src + link + alt + caption;
             $(markItUp.textarea).trigger('insertion', [{replaceWith: linkElement}]);
             $('#myModal').modal('hide');
         });

@@ -6,9 +6,10 @@ class Typus.MarkItUp.Listener extends Backbone.View
     'keyup': 'updateToolbar'
     'click': 'updateToolbar'
 
+  # Move these signature paths out into configuration
   defaults:
     signaturePatterns:
-      img: /^img\(([^\)]+)\)\. (https?:\/\/[\w\/\.\-\@]+)(?::(https?:\/\/[\S]+))?\s?(?:\((.*)\))?(.*)/
+      img: /^(?:inline)?img\(([^\)]+)\)\. (https?:\/\/[\w\/\.\-\@]+)(?::(https?:\/\/[\S]+))?\s?(?:\((.*)\))?(.*)/
       # video:
       # youtube:
       # vimeo:
@@ -19,23 +20,25 @@ class Typus.MarkItUp.Listener extends Backbone.View
     @$el = $(options.el)
     @signaturePatterns = options.signaturePatterns
 
+
+  # TODO: move this out into Editor class or something
   getLine: (caret, string) ->
     start = caret
     end = caret
     --start while start >= 0 and string[start-1] isnt "\n"
     ++end while end < string.length and string[end] isnt "\n"
-    string.substring(start, end)
+    [string.substring(start, end), start, end]
 
   updateToolbar: (e) ->
     caret = @selectionStart
-    line = @getLine(@el.selectionStart, @$el.val())
+    [line, start, end] = @getLine(@el.selectionStart, @$el.val())
     for sig, pattern of @signaturePatterns
-      button = $(".markItUpButton:has(a[title='#{sig}'])")
+      button = @$el.parent().find(".markItUpButton:has(a[title='#{sig}'])")
       match = line.match(pattern)
-      console.log match
       if match
         [all, classes, image, link, alt, caption] = match
         @activateToolbarButton(button, [image, caption, alt, link, classes])
+        @setSelection(@el, start, end)
       else
         @deactivateToolbarButton(button)
 
@@ -46,6 +49,10 @@ class Typus.MarkItUp.Listener extends Backbone.View
   deactivateToolbarButton: (button) ->
     button.removeClass('active')
     button.data('params', null)
+
+  setSelection: (el, start, end) ->
+    # TODO: compatibility shim needed here for some browsers https://developer.mozilla.org/en-US/docs/DOM/Input.setSelectionRange
+    el.setSelectionRange(start, end)
 
 ##
 # Plugin definition

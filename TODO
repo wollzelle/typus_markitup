@@ -1,5 +1,15 @@
  - Add custom commands for all items in style guide
 
+
+Modularize markitup editor changes:
+ - View for editor (handles all other things including modal too)
+ - Rename listener view to Textarea (carat placement, text insertion, finding matches, listening)
+ - Textarea should make new Img model when it discovers new matching line
+ - Trigger event in img replaceWith method in textile.js
+ - Editor listens for the new event from textile.js and pops the popup (creates new Prompt view)
+ - Render different template (JavaScript templates) based upon the type of the model
+
+
  ✓ Make the editor work with translated fields (typus_translate) @done (13-03-08 12:15)
  ✓ Typus::Markitup helper (setup method) @done (13-03-08 13:09)
  ✓ Partial for modal @done (13-03-08 13:09)
