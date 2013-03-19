@@ -38,7 +38,6 @@ class Typus.MarkItUp.Listener extends Backbone.View
       if match
         [all, classes, image, link, alt, caption] = match
         @activateToolbarButton(button, [image, caption, alt, link, classes])
-        @setSelection(@el, start, end)
       else
         @deactivateToolbarButton(button)
 
@@ -49,10 +48,6 @@ class Typus.MarkItUp.Listener extends Backbone.View
   deactivateToolbarButton: (button) ->
     button.removeClass('active')
     button.data('params', null)
-
-  setSelection: (el, start, end) ->
-    # TODO: compatibility shim needed here for some browsers https://developer.mozilla.org/en-US/docs/DOM/Input.setSelectionRange
-    el.setSelectionRange(start, end)
 
 ##
 # Plugin definition
