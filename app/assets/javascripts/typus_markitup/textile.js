@@ -55,7 +55,6 @@ var MarkupHelper = {
 				for (end = markItUp.caretPosition; end < string.length && string[end] != "\n"; ++end);
         line = string.substring(start, end);
 
-        // TODO: don't do this twice if you can avoid it (it's also in listener.js)
         markItUp.textarea.setSelectionRange(start, end);
 
         match = line.match(/^(inline)?img\(([^\)]*)\)\. (https?:\/\/[\w\/\.\-\@]+)(?::(https?:\/\/[\S]+))?\s?(?:\((.*)\))?(.*)/);
@@ -105,7 +104,7 @@ var MarkupHelper = {
             var alt = $('[name="alt"]').val() || caption.replace(/"([^"]+)":\S+/g, "$1");
             var classes = '';
             if (caption !== "") {
-              caption = " " + caption
+              caption = " " + caption;
             }
             if (alt !== "") {
               alt = " (" + alt + ")";
