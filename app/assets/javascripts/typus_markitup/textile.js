@@ -15,23 +15,19 @@ mySettings = {
 	previewParserPath:	'', // path to your Textile parser
 	onShiftEnter:		{keepDefault:false, replaceWith:'\n\n'},
 	markupSet: [
-		{name:'Heading 1', key:'1', openWith:'h1(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-		{name:'Heading 2', key:'2', openWith:'h2(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-		{separator:'---------------' },
-		{name:'Bold', key:'B', closeWith:'*', openWith:'*'},
-		{name:'Italic', key:'I', closeWith:'_', openWith:'_'},
-		{separator:'---------------' },
-		{name:'Bulleted list', openWith:'(!(* |!|*)!)'},
-		{name:'Numeric list', openWith:'(!(# |!|#)!)'},
-		{separator:'---------------' },
-		{name:'img', className: 'img', replaceWith: function(markItUp) {
+		{name:'H1', className: 'btn btn-first', key:'1', openWith:'h1(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
+    {name:'H2', className: 'btn btn-last', key:'2', openWith:'h2(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
+		{name:'B', className: 'btn btn-first btn-bold', key:'B', closeWith:'*', openWith:'*'},
+		{name:'I', className: 'btn btn-last btn-italic', key:'I', closeWith:'_', openWith:'_'},
+		{name:'Bullets', className: 'btn btn-first', openWith:'(!(* |!|*)!)'},
+		{name:'Numbers', className: 'btn btn-last', openWith:'(!(# |!|#)!)'},
+		{name:'', className: 'img btn', replaceWith: function(markItUp) {
 			MarkupHelper.showDialog(markItUp);
 			return false;
 		}},
-		{name:'Link', openWith:'"', closeWith:'([![Title]!])":[![Link:!:http://]!]', placeHolder:'Your text to link here...' },
-    {separator:'---------------' },
-    {name:'Quotes', openWith:'bq(!(([![Class]!]))!). '},
-    {name:'Code', openWith:'@', closeWith:'@'}
+		{name:'', className: 'btn', openWith:'"', closeWith:'([![Title]!])":[![Link:!:http://]!]', placeHolder:'Your text to link here...' },
+    {name:'', className: 'btn', openWith:'bq(!(([![Class]!]))!). '},
+    {name:'Code', className: 'btn', openWith:'@', closeWith:'@'}
 	]
 };
 

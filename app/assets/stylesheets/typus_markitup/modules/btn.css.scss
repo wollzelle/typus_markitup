@@ -1,13 +1,32 @@
 .btn {
   text-decoration: none;
+  border-radius: 5px;
+  & a:hover {
+    text-decoration: none !important;
+  }
   &.btn-primary {
     border: 0;
     background: #37a500;
     color: #fff;
     padding: 8px 30px;
     font-weight: bold;
-    border-radius: 5px;
     cursor: pointer;
     text-shadow: none;
+  }
+  &.btn-first {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0;
+    border-right: none;
+  }
+  &.btn-last {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  &.btn-bold * {
+    font-weight: bold;
+  }
+  &.btn-italic {
+    font-style: italic;
   }
 }

@@ -33,7 +33,7 @@ class Typus.MarkItUp.Listener extends Backbone.View
     caret = @selectionStart
     [line, start, end] = @getLine(@el.selectionStart, @$el.val())
     for sig, pattern of @signaturePatterns
-      button = @$el.parent().find(".markItUpButton:has(a[title='#{sig}'])")
+      button = @$el.parent().find(".markItUpButton.#{sig}")
       match = line.match(pattern)
       if match
         [all, classes, image, link, alt, caption] = match
