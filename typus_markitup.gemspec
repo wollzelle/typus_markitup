@@ -19,5 +19,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "rails", ">= 3.1.3"
   gem.add_dependency "typus"
-
+  gem.add_dependency "jquery-rails"
+  gem.add_dependency "backbone-on-rails"
 end

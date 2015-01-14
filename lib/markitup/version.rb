@@ -1,6 +1,5 @@
 module Typus
   module Markitup
-    VERSION = "0.0.5"
+    VERSION = "4.2.0"
   end
-
 end

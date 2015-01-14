@@ -1,0 +1,94 @@
+@import 'jquery.markitup';
+
+.markItUpContainer {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.markItUp {
+  width: 100%;
+  border: none;
+}
+
+.markItUpHeader ul {
+  padding: 0;
+}
+
+.markItUpEditor {
+  background: none;
+  width: 100%;
+  border: 1px solid;
+  border-color: #848484 #c1c1c1 #e1e1e1;
+  font-family: Arial, 'Liberation Sans', FreeSans, sans-serif;
+  padding: 10px;
+
+  &:active, &:focus {
+    box-shadow: none;
+  }
+}
+
+.markItUpResizeHandle {
+  background: none;
+}
+
+.markItUpButton {
+  margin-right: 5px;
+  &.active {
+    box-shadow: 0 1px 5px #49a;
+  }
+}
+
+// Custom icons
+// ------------------------------------
+
+.markItUpButton1,
+.markItUpButton2,
+.markItUpButton3,
+.markItUpButton4,
+.markItUpButton5,
+.markItUpButton6,
+.markItUpButton7,
+.markItUpButton8,
+.markItUpButton9,
+.markItUpButton10 {
+  a:before {
+    font-family: FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    padding-right: 4px;
+    vertical-align: middle;
+  }
+}
+
+.markItUpButton3 {
+  font-weight: bold;
+}
+
+.markItUpButton4 {
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+.markItUpButton5 a:before {
+  content: "\f0ca";
+}
+
+.markItUpButton6 a:before {
+  content: "\f0cb";
+}
+
+.markItUpButton7 a:before {
+  content: "\f03e";
+}
+
+.markItUpButton8 a:before {
+  content: "\f0c1";
+}
+
+.markItUpButton9 a:before {
+  content: "\f10e";
+}
+
+.markItUpButton10 a:before {
+  content: "\f121";
+}

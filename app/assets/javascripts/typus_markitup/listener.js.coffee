@@ -6,13 +6,9 @@ class Typus.MarkItUp.Listener extends Backbone.View
     'keyup': 'updateToolbar'
     'click': 'updateToolbar'
 
-  # Move these signature paths out into configuration
   defaults:
     signaturePatterns:
       img: /^(?:inline)?img\(([^\)]+)\)\. (https?:\/\/[\w\/\.\-\@]+)(?::(https?:\/\/[\S]+))?\s?(?:\((.*)\))?(.*)/
-      # video:
-      # youtube:
-      # vimeo:
 
   initialize: (options) ->
     options = _.extend(@defaults, options)
@@ -20,8 +16,6 @@ class Typus.MarkItUp.Listener extends Backbone.View
     @$el = $(options.el)
     @signaturePatterns = options.signaturePatterns
 
-
-  # TODO: move this out into Editor class or something
   getLine: (caret, string) ->
     start = caret
     end = caret
