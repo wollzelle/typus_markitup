@@ -26,4 +26,4 @@ Or install it yourself as:
 
 ## Copyright
 
-Copyright (c) 2013 Wollzelle GmbH. See LICENSE for details.
+Copyright (c) 2015 Wollzelle GmbH. See LICENSE for details.
